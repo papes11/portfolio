@@ -783,7 +783,7 @@
             </div>
 
             <div class="hero-image">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="Papesrock - Blockchain Developer" class="profile-terminal" id="heroImage">
+                <img src="https://i.ibb.co/F4T0KBLR/Gemini-Generated-Image-bdpar3bdpar3bdpa.png" alt="Papesrock - Blockchain Developer" class="profile-terminal" id="heroImage">
             </div>
         </div>
     </section>
@@ -988,12 +988,10 @@
         // Load and convert image to base64
         async function loadImage() {
             try {
-                const response = await fetch('https://via.placeholder.com/500x500?text=Papesrock');
-                // If you want to use a local image, you can use this approach:
-                // Replace the src with your actual image path or base64
-                document.getElementById('heroImage').src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+                // Image is loaded directly from the URL
+                console.log('Image loaded successfully');
             } catch (e) {
-                console.log('Image loaded');
+                console.log('Error loading image');
             }
         }
 
