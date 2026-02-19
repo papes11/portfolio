@@ -349,22 +349,14 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <!--
-                        HOW TO ENABLE EMAIL SENDING:
-                        1. Go to https://formspree.io and sign up for free
-                        2. Create a new form — set the destination email to papesrock11@gmail.com
-                        3. Copy your Form ID (looks like: xpzvjdkw)
-                        4. Replace YOUR_FORMSPREE_ID below with your actual ID
-                        Example: action="https://formspree.io/f/xpzvjdkw"
-                    -->
-                    <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-                        <input type="hidden" name="_replyto" value="papesrock11@gmail.com">
-                        <input type="text" name="name" placeholder="Enter your name" required>
-                        <input type="email" name="email" placeholder="Enter your email" required>
-                        <textarea name="message" placeholder="Your message here..." required></textarea>
-                        <button type="submit" class="btn" id="submitBtn">Send Message</button>
-                        <div class="form-status" id="formStatus"></div>
-                    </form>
+                    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+                        <a href="https://x.com/simosun01" target="_blank" class="btn" style="display:flex;align-items:center;justify-content:center;gap:0.8rem;text-decoration:none;">
+                            <i class="fab fa-x-twitter"></i> Message on X
+                        </a>
+                        <a href="https://t.me/Piwpiw_dev00" target="_blank" class="btn secondary" style="display:flex;align-items:center;justify-content:center;gap:0.8rem;text-decoration:none;">
+                            <i class="fab fa-telegram"></i> Message on Telegram
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -388,40 +380,6 @@
                 }
             });
         });
-
-        // Contact form - Opens email client
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const formStatus = document.getElementById('formStatus');
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                
-                // Create mailto link with form data
-                const subject = encodeURIComponent(`Message from ${name}`);
-                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                const mailtoLink = `mailto:papesrock11@gmail.com?subject=${subject}&body=${body}`;
-                
-                // Open user's email client
-                window.location.href = mailtoLink;
-                
-                // Show success message
-                formStatus.textContent = '✓ Opening your email client...';
-                formStatus.className = 'form-status success';
-                
-                // Reset form after a short delay
-                setTimeout(() => {
-                    contactForm.reset();
-                    formStatus.textContent = '';
-                    formStatus.className = 'form-status';
-                }, 2000);
-            });
-        }
     </script>
 </body>
 </html>
