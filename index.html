@@ -185,6 +185,22 @@
                     </div>
                 </div>
 
+                <!-- PokePixel Game — MOVED TO SECOND POSITION -->
+                <div class="project-card">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">
+                        <div class="project-icon" style="margin-bottom:0;"><i class="fas fa-gamepad"></i></div>
+                        <span class="won-badge">🏆 Hackathon Winner</span>
+                    </div>
+                    <h3>PokePixel Game</h3>
+                    <p>Play-to-earn gaming platform built on Solana. Connect your wallet, find hidden treasure, open loot boxes, collect items, battle, trade, and earn crypto rewards. Live on mainnet with active beta.</p>
+                    <div class="project-tech"><span>Solana</span><span>NFT</span><span>Play-to-Earn</span><span>WebGL</span><span>Web3</span></div>
+                    <div class="project-links">
+                        <span class="live-badge">Live</span>
+                        <a href="https://www.pokepixel.xyz/" target="_blank" class="project-link">Visit App →</a>
+                        <a href="https://github.com/papes11/pokepixel" target="_blank" class="project-link">Repo →</a>
+                    </div>
+                </div>
+
                 <!-- Sol Furnace -->
                 <div class="project-card">
                     <div class="project-icon"><i class="fas fa-fire"></i></div>
@@ -228,22 +244,6 @@
                     <div class="project-tech"><span>Solana</span><span>Web3</span><span>LiveKit</span></div>
                     <div class="project-links">
                         <a href="https://github.com/papes11/stream-platform-on-solana-" target="_blank" class="project-link">View Repository →</a>
-                    </div>
-                </div>
-
-                <!-- PokePixel Game — UPDATED with live site -->
-                <div class="project-card">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;">
-                        <div class="project-icon" style="margin-bottom:0;"><i class="fas fa-gamepad"></i></div>
-                        <span class="won-badge">🏆 Hackathon Winner</span>
-                    </div>
-                    <h3>PokePixel Game</h3>
-                    <p>Play-to-earn gaming platform built on Solana. Connect your wallet, find hidden treasure, open loot boxes, collect items, battle, trade, and earn crypto rewards. Live on mainnet with active beta.</p>
-                    <div class="project-tech"><span>Solana</span><span>NFT</span><span>Play-to-Earn</span><span>WebGL</span><span>Web3</span></div>
-                    <div class="project-links">
-                        <span class="live-badge">Live</span>
-                        <a href="https://www.pokepixel.xyz/" target="_blank" class="project-link">Visit App →</a>
-                        <a href="https://github.com/papes11/pokepixel" target="_blank" class="project-link">Repo →</a>
                     </div>
                 </div>
 
@@ -389,39 +389,37 @@
             });
         });
 
-        // Contact form with Formspree
+        // Contact form - Opens email client
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const formStatus = document.getElementById('formStatus');
 
         if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
+            contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-                formStatus.className = 'form-status';
-
-                try {
-                    const response = await fetch(this.action, {
-                        method: 'POST',
-                        body: new FormData(this),
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    if (response.ok) {
-                        formStatus.textContent = '✓ Message sent! I will get back to you soon.';
-                        formStatus.className = 'form-status success';
-                        contactForm.reset();
-                    } else {
-                        throw new Error('Submission failed');
-                    }
-                } catch (err) {
-                    formStatus.textContent = '✗ Could not send message. Please email papesrock11@gmail.com directly.';
-                    formStatus.className = 'form-status error';
-                }
-
-                submitBtn.textContent = 'Send Message';
-                submitBtn.disabled = false;
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Create mailto link with form data
+                const subject = encodeURIComponent(`Message from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                const mailtoLink = `mailto:papesrock11@gmail.com?subject=${subject}&body=${body}`;
+                
+                // Open user's email client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                formStatus.textContent = '✓ Opening your email client...';
+                formStatus.className = 'form-status success';
+                
+                // Reset form after a short delay
+                setTimeout(() => {
+                    contactForm.reset();
+                    formStatus.textContent = '';
+                    formStatus.className = 'form-status';
+                }, 2000);
             });
         }
     </script>
