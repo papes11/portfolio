@@ -34,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* Scanlines effect */
         body::before {
             content: '';
             position: fixed;
@@ -53,7 +52,6 @@
             z-index: 999;
         }
 
-        /* Terminal cursor blink */
         @keyframes blink {
             0%, 49%, 100% { opacity: 1; }
             50%, 99% { opacity: 0; }
@@ -65,19 +63,8 @@
         }
 
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .container {
@@ -88,7 +75,6 @@
             z-index: 1;
         }
 
-        /* Header */
         header {
             border-bottom: 1px solid var(--border);
             padding: 20px 0;
@@ -139,16 +125,9 @@
             transition: all 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::before { opacity: 1; margin-right: 5px; }
 
-        .nav-links a:hover::before {
-            opacity: 1;
-            margin-right: 5px;
-        }
-
-        /* Hero Section */
         .hero {
             padding-top: 150px;
             padding-bottom: 100px;
@@ -209,12 +188,9 @@
             margin: 3rem 0;
             padding: 2rem;
             border: 1px solid var(--border);
-            border-radius: 0;
         }
 
-        .stat {
-            text-align: center;
-        }
+        .stat { text-align: center; }
 
         .stat-value {
             font-size: 2rem;
@@ -267,23 +243,11 @@
             z-index: -1;
         }
 
-        .btn:hover {
-            color: var(--bg);
-            border-color: var(--accent);
-        }
+        .btn:hover { color: var(--bg); border-color: var(--accent); }
+        .btn:hover::before { left: 0; }
 
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn.secondary {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .btn.secondary:hover {
-            color: var(--bg);
-        }
+        .btn.secondary { border-color: var(--accent); color: var(--accent); }
+        .btn.secondary:hover { color: var(--bg); }
 
         .social-links {
             display: flex;
@@ -325,35 +289,10 @@
         }
 
         @keyframes imagePulse {
-            0%, 100% {
-                box-shadow: 0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(0, 255, 0, 0.5), inset 0 0 30px rgba(0, 255, 0, 0.2);
-            }
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1); }
+            50% { box-shadow: 0 0 50px rgba(0, 255, 0, 0.5), inset 0 0 30px rgba(0, 255, 0, 0.2); }
         }
 
-        .terminal-box {
-            border: 1px solid var(--accent);
-            background: rgba(0, 255, 0, 0.02);
-            padding: 2rem;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            max-width: 100%;
-            overflow-x: auto;
-            color: var(--accent);
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
-        }
-
-        .terminal-line {
-            margin: 0.5rem 0;
-        }
-
-        .terminal-comment {
-            color: var(--text-dim);
-        }
-
-        /* Projects Section */
         .projects {
             padding: 100px 0;
             border-bottom: 1px solid var(--border);
@@ -403,9 +342,7 @@
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
         }
 
-        .project-card:hover::before {
-            left: 0;
-        }
+        .project-card:hover::before { left: 0; }
 
         .project-icon {
             font-size: 2rem;
@@ -441,6 +378,13 @@
             letter-spacing: 0.5px;
         }
 
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         .project-link {
             color: var(--text-dim);
             text-decoration: none;
@@ -459,15 +403,56 @@
             transition: width 0.3s;
         }
 
-        .project-link:hover {
+        .project-link:hover { color: var(--accent); }
+        .project-link:hover::before { width: 20px; }
+
+        /* WIP badge */
+        .wip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: #ffcc00;
+            border: 1px solid #ffcc00;
+            padding: 0.25rem 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: wipPulse 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes wipPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(255,204,0,0.3); }
+            50% { opacity: 0.7; box-shadow: 0 0 12px rgba(255,204,0,0.5); }
+        }
+
+        /* Live badge */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.7rem;
             color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.25rem 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: livePulse 2s ease-in-out infinite;
         }
 
-        .project-link:hover::before {
-            width: 20px;
+        .live-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
-        /* Skills Section */
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
         .skills {
             padding: 100px 0;
             border-bottom: 1px solid var(--border);
@@ -512,12 +497,8 @@
             transition: all 0.3s;
         }
 
-        .skill-item:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+        .skill-item:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Hackathon Section */
         .hackathon {
             padding: 100px 0;
             border-bottom: 1px solid var(--border);
@@ -594,7 +575,6 @@
             box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
         }
 
-        /* Contact Section */
         .contact {
             padding: 100px 0;
             border-bottom: 1px solid var(--border);
@@ -625,9 +605,7 @@
             font-size: 0.9rem;
         }
 
-        .contact-item p {
-            color: var(--text-dim);
-        }
+        .contact-item p { color: var(--text-dim); }
 
         .contact-form form {
             display: flex;
@@ -647,9 +625,7 @@
         }
 
         .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: var(--text-dim);
-        }
+        .contact-form textarea::placeholder { color: var(--text-dim); }
 
         .contact-form input:focus,
         .contact-form textarea:focus {
@@ -664,7 +640,6 @@
             min-height: 150px;
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
             padding: 3rem 0;
@@ -673,66 +648,24 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-
-            .hero-text h2 {
-                font-size: 1rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-                font-size: 0.8rem;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hackathon-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
+            .container { padding: 0 20px; }
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-text h2 { font-size: 1rem; }
+            .nav-links { gap: 1.5rem; font-size: 0.8rem; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; text-align: center; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-content { grid-template-columns: 1fr; }
+            .hackathon-content { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo">PS</div>
@@ -746,7 +679,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
@@ -780,7 +712,7 @@
 
                 <div class="social-links">
                     <a href="https://github.com/papes11" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="mailto:papesrock11@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="/cdn-cgi/l/email-protection#fa8a9b8a9f8988959991cbcbba9d979b9396d4999597" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="tel:+919775108803" title="Phone"><i class="fas fa-phone"></i></a>
                     <a href="https://t.me/Piwpiw_dev00" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
                 </div>
@@ -792,11 +724,68 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+
+                <!-- DeSocial - CURRENT WORK -->
+                <div class="project-card" style="border-color: rgba(0,255,0,0.4); box-shadow: 0 0 25px rgba(0,255,0,0.08);">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem;">
+                        <div class="project-icon" style="margin-bottom:0;"><i class="fas fa-network-wired"></i></div>
+                        <span class="wip-badge">⚡ Currently Building</span>
+                    </div>
+                    <h3>DeSocial — Attention Layer</h3>
+                    <p>Decentralized social attention interaction layer built on Solana. Features a Proof-of-Attention rewards system that incentivizes genuine engagement — turning user attention into on-chain value.</p>
+                    <div class="project-tech">
+                        <span>Solana</span>
+                        <span>Proof-of-Attention</span>
+                        <span>DeSoc</span>
+                        <span>Web3</span>
+                        <span>React</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="live-badge">Live Preview</span>
+                        <a href="https://development-omega-rosy.vercel.app/" target="_blank" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <!-- Sol Furnace -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-fire"></i></div>
+                    <h3>Sol Furnace</h3>
+                    <p>Solana burn interface for closing SPL token accounts, recovering locked SOL rent, and executing buyback burn mechanics — with zero platform fees and 90% revenue distributed to holders.</p>
+                    <div class="project-tech">
+                        <span>Solana</span>
+                        <span>SPL Tokens</span>
+                        <span>Burn</span>
+                        <span>DeFi</span>
+                        <span>Web3</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="live-badge">Live</span>
+                        <a href="https://www.solfurnace.xyz/" target="_blank" class="project-link">Visit App →</a>
+                    </div>
+                </div>
+
+                <!-- Burncoin Metrics - NEW PROJECT -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Burncoin Metrics</h3>
+                    <p>Real-time SPL token analytics dashboard for BURNCOIN — tracking live burn supply, circulating supply, price, holders, liquidity and 24h volume. Features an embedded Jupiter swap for seamless in-app trading.</p>
+                    <div class="project-tech">
+                        <span>Solana</span>
+                        <span>SPL Tokens</span>
+                        <span>Jupiter API</span>
+                        <span>DeFi</span>
+                        <span>Real-time</span>
+                    </div>
+                    <div class="project-links">
+                        <span class="live-badge">Live</span>
+                        <a href="https://www.burncoin-metrics.xyz/" target="_blank" class="project-link">Visit App →</a>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <div class="project-icon"><i class="fas fa-exchange-alt"></i></div>
                     <h3>Mars Swap DEX</h3>
@@ -806,7 +795,9 @@
                         <span>React</span>
                         <span>TypeScript</span>
                     </div>
-                    <a href="https://github.com/papes11/mars-swap" target="_blank" class="project-link">View Repository →</a>
+                    <div class="project-links">
+                        <a href="https://github.com/papes11/mars-swap" target="_blank" class="project-link">View Repository →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -818,7 +809,9 @@
                         <span>Web3</span>
                         <span>LiveKit</span>
                     </div>
-                    <a href="https://github.com/papes11/stream-platform-on-solana-" target="_blank" class="project-link">View Repository →</a>
+                    <div class="project-links">
+                        <a href="https://github.com/papes11/stream-platform-on-solana-" target="_blank" class="project-link">View Repository →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -830,7 +823,9 @@
                         <span>React</span>
                         <span>Node.js</span>
                     </div>
-                    <a href="https://github.com/papes11/Presale-Website-full" target="_blank" class="project-link">View Repository →</a>
+                    <div class="project-links">
+                        <a href="https://github.com/papes11/Presale-Website-full" target="_blank" class="project-link">View Repository →</a>
+                    </div>
                 </div>
 
                 <div class="project-card">
@@ -842,13 +837,15 @@
                         <span>WebGL</span>
                         <span>React</span>
                     </div>
-                    <a href="https://github.com/papes11/pokepixel" target="_blank" class="project-link">View Repository →</a>
+                    <div class="project-links">
+                        <a href="https://github.com/papes11/pokepixel" target="_blank" class="project-link">View Repository →</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Technical Stack</h2>
@@ -861,6 +858,10 @@
                         <span class="skill-item">DeFi</span>
                         <span class="skill-item">DEX</span>
                         <span class="skill-item">Web3</span>
+                        <span class="skill-item">SPL Tokens</span>
+                        <span class="skill-item">Token Burn</span>
+                        <span class="skill-item">DeSoc</span>
+                        <span class="skill-item">Proof-of-Attention</span>
                     </div>
                 </div>
 
@@ -896,7 +897,6 @@
         </div>
     </section>
 
-    <!-- Hackathon Section -->
     <section id="hackathon" class="hackathon">
         <div class="container">
             <h2 class="section-title">Hackathon Achievements</h2>
@@ -946,7 +946,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
@@ -954,7 +953,7 @@
                 <div>
                     <div class="contact-item">
                         <h3>Email</h3>
-                        <p>papesrock11@gmail.com</p>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d3a3b2a3b6a0a1bcb0b8e2e293b4beb2babffdb0bcbe">[email&#160;protected]</a></p>
                     </div>
                     <div class="contact-item">
                         <h3>Telegram</h3>
@@ -981,25 +980,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>© 2024-25. Papesrock | Blockchain Developer | All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Load and convert image to base64
-        async function loadImage() {
-            try {
-                // Image is loaded directly from the URL
-                console.log('Image loaded successfully');
-            } catch (e) {
-                console.log('Error loading image');
-            }
-        }
-
-        // Smooth scrolling
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -1007,16 +994,12 @@
                     e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 }
             });
         });
 
-        // Form handling
         const contactForm = document.querySelector('.contact-form form');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
@@ -1025,15 +1008,3 @@
                 this.reset();
             });
         }
-
-        // Add terminal effect to hero text on load
-        window.addEventListener('load', function() {
-            const heroText = document.querySelector('.hero-text h1');
-            if (heroText) {
-                heroText.style.animation = 'slideInLeft 0.6s ease-out';
-            }
-            loadImage();
-        });
-    </script>
-</body>
-</html>
